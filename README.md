@@ -104,6 +104,4 @@ Our pipeline handles:
 
 <div align="center">
   <i>Developed with ❤️ for a sustainable future.</i>
-  <br>
-  <b>Yashwant</b>
 </div>
