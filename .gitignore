@@ -31,6 +31,9 @@ venv.bak/
 *.onnx
 AgroGuard/ml_pipeline/dataset/
 AgroGuard/ml_pipeline/generated_data/
+AgroGuard/ml_pipeline/archive/
+AgroGuard/ml_pipeline/archive.zip
+AgroGuard/ml_pipeline/plantdisease.zip
 
 # Frontend / Build
 AgroGuard/frontend/dist/

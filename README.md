@@ -69,10 +69,26 @@ git clone https://github.com/your-username/agroguard.git
 cd agroguard
 ```
 
-### 2. Set up the Backend API
+### 2. Train the AI Model
+
+Before running the backend, you must train the Machine Learning model. Our optimized training pipeline uses MobileNetV2 for blazing-fast CPU training (~10 mins for 5 epochs).
+
+1. **Download Dataset**: Go to [Plant Disease Dataset on Kaggle](https://www.kaggle.com/datasets/emmarex/plantdisease).
+2. **Extract Files**: Extract the dataset into `AgroGuard/ml_pipeline/archive/PlantVillage/` (you should see folders like `Tomato_Bacterial_spot` inside).
+3. **Run Training Script**:
+```bash
+cd AgroGuard/ml_pipeline
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+pip install -r requirements.txt
+python train.py
+```
+*This will automatically train the model and copy `agroguard_model.h5` and `class_indices.json` into your `backend/` folder!*
+
+### 3. Set up the Backend API
 
 ```bash
-cd AgroGuard/backend
+cd ../backend
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install -r requirements.txt
@@ -80,7 +96,7 @@ python app.py
 ```
 *The Backend API will be available at `http://localhost:5001`*
 
-### 3. Set up the Frontend
+### 4. Set up the Frontend
 
 Open a second terminal and execute:
 
@@ -89,16 +105,16 @@ cd AgroGuard/frontend
 npm install
 npm run dev
 ```
-*Your React app will run locally on `http://localhost:5173`*
+*Your React app will run locally on `http://localhost:5173`. Open this URL in your browser to start diagnosing!*
 
 ## 🧠 Machine Learning Engine
 
-The core of AgroGuard relies on a custom convolutional neural network designed to identify various plant diseases from leaf imagery.
+The core of AgroGuard relies on an optimized **MobileNetV2** convolutional neural network, fine-tuned to identify 15 different plant foliar conditions with high accuracy. 
 
-Our pipeline handles:
-- **`dataset_prep.py`**: Ingesting and normalizing datasets of plant foliar conditions.
-- **`generate_mock_dataset.py`**: Dynamic data augmentation for testing robustness.
-- **`train.py`**: Model architecture, training loops, validation schemas, and serialization.
+Our pipeline (`ml_pipeline/`) handles:
+- **Data Augmentation**: Dynamic resizing (128x128), rotation, shifts, and flips to create a robust model.
+- **Fast Training**: Initial training with a frozen base, followed by an automatic fine-tuning callback if accuracy falls below a threshold.
+- **Auto-Deployment**: Script cleanly exports the H5 model and JSON class indices directly to the backend.
 
 ---
 

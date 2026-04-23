@@ -2,3 +2,7 @@ flask
 flask-cors
 werkzeug
 numpy
+tensorflow>=2.15.0
+opencv-python
+Pillow
+pandas

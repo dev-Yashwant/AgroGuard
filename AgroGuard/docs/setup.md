@@ -23,7 +23,7 @@ source venv/bin/activate
 pip install flask numpy flask-cors
 python app.py
 \`\`\`
-*(The server will start at http://localhost:5000)*
+*(The server will start at http://localhost:5001)*
 
 ## 2. Setting up the Frontend
 The frontend uses React and Tailwind CSS for a modern, responsive user experience. It uses Vite as the build tool.
@@ -65,6 +65,11 @@ This will extract images, execute data augmentation on-the-fly via `dataset_prep
 - [x] Frontend Setup (React + Tailwind config)
 - [x] Base UI Implementation (Drag-and-Drop Image, Simulator UI)
 - [x] Backend Setup (Basic Flask App)
-- [ ] Connect Backend to Frontend (Axios)
+- [x] Connect Backend to Frontend (Axios)
+- [x] React Router + Multi-Page (Home, Diagnose, Agro-Wiki)
+- [x] Backend Inference Pipeline (model loading, preprocessing, prediction)
+- [x] Treatment Database (27+ diseases)
+- [x] API: GET /diseases endpoint for Agro-Wiki
+- [ ] Train ML Model on PlantVillage Dataset
 - [ ] MongoDB Setup
-- [ ] Transfer Learning CNN Model Development
+- [ ] User Authentication (JWT)
